@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snackapp/CreateAccount.dart';
 // import 'package:snackapp/home.dart';
 // import 'package:snackapp/loginImageButton.dart';
 import 'package:snackapp/register.dart';
@@ -108,6 +109,7 @@ class WelcomeState extends State<Welcome> {
                 options: CarouselOptions(
                   // enableInfiniteScroll: false,
                   aspectRatio: 2,
+                  autoPlay: true,
                 ),
                 items: [
                   WelcomeImageButton(
@@ -125,6 +127,10 @@ class WelcomeState extends State<Welcome> {
                   WelcomeImageButton(
                     icon: Icons.coffee,
                     color: Colors.brown.shade900,
+                  ),
+                  WelcomeImageButton(
+                    icon: Icons.rice_bowl,
+                    color: Colors.black87,
                   ),
                 ],
               ),
@@ -147,11 +153,6 @@ class WelcomeState extends State<Welcome> {
               ),
             ],
           ),
-          // SizedBox(
-          //   height: 70,
-          // ),
-
-          /////////////////Email Text Field//////////////////
 
           Padding(
             padding: const EdgeInsets.only(top: 100, bottom: 20),
@@ -170,28 +171,39 @@ class WelcomeState extends State<Welcome> {
                 )),
           ),
 
-          //////////////////Password Text Field////////////
-          ///
-
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
             child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 70),
-                // width: 200,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 15, 27, 39),
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: WelcomePageText(
-                  text: "Create an account",
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+              // width: 200,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 15, 27, 39),
+                border: Border.all(
                   color: Colors.white,
-                  fontweight: FontWeight.w800,
-                  fontsize: 18,
-                )),
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateAccountPage()));
+                  },
+                  child: WelcomePageText(
+                    text: "Create an account",
+                    color: Colors.white,
+                    fontweight: FontWeight.w800,
+                    fontsize: 18,
+                  )),
+              // child: WelcomePageText(
+              //   text: "Create an account",
+              //   color: Colors.white,
+              //   fontweight: FontWeight.w800,
+              //   fontsize: 18,
+              // )
+            ),
           ),
 
           /////////////Footer///////////////////
