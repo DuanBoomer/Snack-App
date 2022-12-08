@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:snackapp/carousalSlider.dart';
 // import 'package:snackapp/home.dart';
 // import 'package:snackapp/loginImageButton.dart';
 import 'package:snackapp/register.dart';
