@@ -1,9 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:snackapp/home.dart';
-import 'package:snackapp/loginImageButton.dart';
+// import 'package:snackapp/carousalSlider.dart';
+// import 'package:snackapp/home.dart';
+// import 'package:snackapp/loginImageButton.dart';
 import 'package:snackapp/register.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+class LoginImageButton extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  LoginImageButton({required this.icon, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+      child: Container(
+        width: 160,
+        height: 160,
+        // padding: EdgeInsets.all(80),
+        child: Icon(
+          icon,
+          size: 60,
+          color: color,
+        ),
+        decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black54,
+                offset: Offset(6, 6),
+                blurRadius: 5,
+                spreadRadius: 2,
+              ),
+              BoxShadow(
+                color: Colors.blueGrey.shade600,
+                offset: Offset(-6, -6),
+                blurRadius: 5,
+                spreadRadius: 2,
+              ),
+            ]),
+      ),
+    );
+  }
+}
 
 class LoginPageText extends StatelessWidget {
   final String text;
@@ -43,7 +84,7 @@ class LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 18, 18, 18),
+      backgroundColor: Color.fromARGB(255, 15, 27, 39),
       body: SafeArea(
           child: Center(
               child: Column(
@@ -62,21 +103,31 @@ class LoginState extends State<Login> {
           // LoginImageButton(),
 
           Padding(
-            padding: const EdgeInsets.only(left: 100, right: 100, bottom: 100),
+            padding: const EdgeInsets.only(bottom: 50, top: 50),
             child: Container(
-              height: 160,
-              child: ListView.builder(
-                // padding: EdgeInsets.symmetric(horizontal: 200),
-                itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      // SizedBox(width: 100,),
-                      LoginImageButton(),
-                    ],
-                  );
-                },
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  // enableInfiniteScroll: false,
+                  aspectRatio: 2,
+                ),
+                items: [
+                  LoginImageButton(
+                    icon: Icons.favorite,
+                    color: Colors.red,
+                  ),
+                  LoginImageButton(
+                    icon: Icons.breakfast_dining,
+                    color: Colors.brown.shade600,
+                  ),
+                  LoginImageButton(
+                    icon: Icons.local_pizza,
+                    color: Colors.orange,
+                  ),
+                  LoginImageButton(
+                    icon: Icons.coffee,
+                    color: Colors.brown.shade900,
+                  ),
+                ],
               ),
             ),
           ),
@@ -109,7 +160,7 @@ class LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
                 // width: 200,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 249, 242, 232),
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: LoginPageText(
@@ -129,7 +180,7 @@ class LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 70),
                 // width: 200,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade900,
+                  color: Color.fromARGB(255, 15, 27, 39),
                   border: Border.all(
                     color: Colors.white,
                     width: 1.5,
@@ -151,7 +202,7 @@ class LoginState extends State<Login> {
               LoginPageText(
                 text: "Already have an account?",
                 color: Colors.white,
-                fontweight: FontWeight.w100,
+                fontweight: FontWeight.w200,
                 fontsize: 14,
               ),
               TextButton(
