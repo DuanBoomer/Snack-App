@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:snackapp/CreateAccount.dart';
 // import 'package:snackapp/home.dart';
 // import 'package:snackapp/loginImageButton.dart';
-import 'package:snackapp/register.dart';
+// import 'package:snackapp/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:snackapp/LoginAccount.dart';
 
 class WelcomeImageButton extends StatelessWidget {
   final IconData icon;
@@ -163,12 +164,19 @@ class WelcomeState extends State<Welcome> {
                   color: Color.fromARGB(255, 249, 242, 232),
                   borderRadius: BorderRadius.circular(100),
                 ),
-                child: WelcomePageText(
+                child: TextButton(
+                  onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginAccountPage()));
+                    },
+                  child: WelcomePageText(
                   text: "Continue with Email",
                   color: Colors.black87,
                   fontweight: FontWeight.w800,
                   fontsize: 18,
-                )),
+                ))),
           ),
 
           Padding(
@@ -207,29 +215,29 @@ class WelcomeState extends State<Welcome> {
           ),
 
           /////////////Footer///////////////////
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              WelcomePageText(
-                text: "Already have an account?",
-                color: Colors.white,
-                fontweight: FontWeight.w200,
-                fontsize: 14,
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Register()));
-                },
-                child: WelcomePageText(
-                  text: "Login",
-                  color: Colors.white,
-                  fontweight: FontWeight.w600,
-                  fontsize: 14,
-                ),
-              ),
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     WelcomePageText(
+          //       text: "Already have an account?",
+          //       color: Colors.white,
+          //       fontweight: FontWeight.w200,
+          //       fontsize: 14,
+          //     ),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(context,
+          //             MaterialPageRoute(builder: (context) => LoginAccountPage()));
+          //       },
+          //       child: WelcomePageText(
+          //         text: "Login",
+          //         color: Colors.white,
+          //         fontweight: FontWeight.w600,
+          //         fontsize: 14,
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ))),
     );

@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 // import 'package:snackapp/loginImageButton.dart';
 // import 'package:snackapp/register.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:snackapp/LoginAccount.dart';
+import 'package:snackapp/ForgotPassword.dart';
 import 'package:snackapp/home.dart';
 
-class CreateAccountPage extends StatefulWidget {
-  const CreateAccountPage({super.key});
+class LoginAccountPage extends StatefulWidget {
+  const LoginAccountPage({super.key});
 
   @override
-  CreateAccountPageState createState() => CreateAccountPageState();
+  LoginAccountPageState createState() => LoginAccountPageState();
 }
 
-class CreateAccountPageState extends State<CreateAccountPage> {
+class LoginAccountPageState extends State<LoginAccountPage> {
   bool isEventButtonPressed = false;
   @override
   Widget build(BuildContext context) {
@@ -36,36 +36,6 @@ class CreateAccountPageState extends State<CreateAccountPage> {
               onPressed: () {
                 Navigator.pop(context);
               }),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 13),
-              child: Center(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                          width: 1, color: Color.fromARGB(255, 15, 27, 39))),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginAccountPage()));
-                    },
-                    child: Text(
-                    "Login",
-                    // textAlign: TextAlign.center,
-                    style: GoogleFonts.robotoMono(
-                      color: Color.fromARGB(255, 15, 27, 39),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15,
-                    ),
-                  ),),
-                ),
-              ),
-            ),
-          ],
         ),
         backgroundColor: Color.fromARGB(255, 249, 242, 232),
         body: Padding(
@@ -78,7 +48,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                   bottom: 10,
                 ),
                 child: Text(
-                  "Create an account",
+                  "Log in to your account",
                   style: GoogleFonts.robotoMono(
                       color: Colors.black,
                       fontSize: 24,
@@ -115,46 +85,23 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       fontSize: 20,
                     ),
                     decoration: InputDecoration(
-                      hintText: "Email",
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: TextField(
-                    style: GoogleFonts.robotoMono(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                    ),
-                    decoration: InputDecoration(
                       hintText: "Password",
                     )),
               ),
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(isEventButtonPressed
-                        ? Icons.check_circle_outline_outlined
-                        : Icons.circle_outlined),
-                    onPressed: () {
-                      setState(() {
-                        isEventButtonPressed = !isEventButtonPressed;
-                      });
+              TextButton(
+                  onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordPage()));
                     },
-                  ),
-                  Container(
-                    width: 275,
-                    child: Text(
-                      "Yes, please send me updates on special events, offers, and other information from SnackApp",
-                      // overflow: TextOverflow.clip,
-                      style: GoogleFonts.robotoMono(
-                        color: Colors.black87,
-                        fontSize: 12.5,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 15, 27, 39),
+                        decoration: TextDecoration.underline),
+                  )),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
@@ -169,21 +116,20 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Home()));
-                    },
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      },
                       child: Text(
-                      "Create",
-                      // textAlign: TextAlign.center,
-                      style: GoogleFonts.robotoMono(
-                        // color: Color.fromARGB(255, 15, 27, 39),
-                        color: Color.fromARGB(255, 249, 242, 232),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
+                        "Login",
+                        // textAlign: TextAlign.center,
+                        style: GoogleFonts.robotoMono(
+                          // color: Color.fromARGB(255, 15, 27, 39),
+                          color: Color.fromARGB(255, 249, 242, 232),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                        ),
                       ),
-                    ),),
+                    ),
                   ),
                 ),
               ),
