@@ -17,6 +17,7 @@ class LoginAccountPage extends StatefulWidget {
 
 class LoginAccountPageState extends State<LoginAccountPage> {
   bool isEventButtonPressed = false;
+  Color textButtonBackground = Color.fromARGB(255, 15, 27, 39);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,114 +40,114 @@ class LoginAccountPageState extends State<LoginAccountPage> {
         ),
         backgroundColor: Color.fromARGB(255, 249, 242, 232),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 10,
-                ),
-                child: Text(
-                  "Log in to your account",
-                  style: GoogleFonts.robotoMono(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 35),
-                child: Text(
-                  "Feel the tasty snacks just a min away",
-                  style: GoogleFonts.robotoMono(
-                    color: Colors.black87,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Expanded(
+                child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 10,
+                    ),
+                    child: Text(
+                      "Log in to your account",
+                      style: GoogleFonts.robotoMono(
+                          color: Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: TextField(
-                    style: GoogleFonts.robotoMono(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Name",
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: TextField(
-                    style: GoogleFonts.robotoMono(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                    )),
-              ),
-              TextButton(
-                  onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordPage()));
-                    },
-                  child: Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 15, 27, 39),
-                        decoration: TextDecoration.underline),
-                  )),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 25),
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 110, vertical: 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Color.fromARGB(255, 15, 27, 39),
-                      // border: Border.all(
-                      //     width: 1, color: Color.fromARGB(255, 15, 27, 39))
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
-                      },
-                      child: Text(
-                        "Login",
-                        // textAlign: TextAlign.center,
-                        style: GoogleFonts.robotoMono(
-                          // color: Color.fromARGB(255, 15, 27, 39),
-                          color: Color.fromARGB(255, 249, 242, 232),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 35),
+                    child: Text(
+                      "Feel the tasty snacks just a min away",
+                      style: GoogleFonts.robotoMono(
+                        color: Colors.black87,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Text(
-                  "By creating an account, you agree to our Privacy Policy",
-                  style: GoogleFonts.robotoMono(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    color: Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: TextField(
+                        style: GoogleFonts.robotoMono(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Name",
+                        )),
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: TextField(
+                        style: GoogleFonts.robotoMono(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Password",
+                        )),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForgotPasswordPage()));
+                      },
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 15, 27, 39),
+                            decoration: TextDecoration.underline),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            decoration: BoxDecoration(
+                                color: textButtonBackground,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Home()));
+                                },
+                                child: Text("Create",
+                                    style: GoogleFonts.robotoMono(
+                                      color: Color.fromARGB(255, 249, 242, 232),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                    ))),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    child: Text(
+                      "By creating an account, you agree to our Privacy Policy",
+                      style: GoogleFonts.robotoMono(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ));
+            ))));
   }
 }
