@@ -1,4 +1,3 @@
-// import 'dart:html';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +22,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   final Color textButtonBackground = Colors.grey.shade300;
   final Color backgroundColor = Color.fromARGB(255, 227, 218, 205);
   final Color textButtonColor = Color.fromARGB(255, 15, 27, 39);
+
   final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   String name = '';
@@ -56,27 +56,27 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 25),
               decoration: BoxDecoration(
-                  boxShadow: isLoginButtonPressed
-                      ? []
-                      : [
-                          BoxShadow(
-                            color: Colors.blueGrey.shade900,
-                            blurRadius: 4,
-                            spreadRadius: 0,
-                            offset: Offset(1, 1),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 4,
-                            spreadRadius: 2,
-                            offset: Offset(-1, -1),
-                          ),
-                        ],
-                  color: isLoginButtonPressed
-                      ? textButtonColor
-                      : textButtonBackground,
-                  borderRadius: BorderRadius.circular(35),
-                  border: Border.all(width: 1, color: textButtonBackground)),
+                boxShadow: isLoginButtonPressed
+                    ? []
+                    : [
+                        BoxShadow(
+                          color: Colors.blueGrey.shade900,
+                          blurRadius: 4,
+                          spreadRadius: 0,
+                          offset: Offset(1, 1),
+                        ),
+                        BoxShadow(
+                          color: Colors.white,
+                          blurRadius: 4,
+                          spreadRadius: 2,
+                          offset: Offset(-1, -1),
+                        ),
+                      ],
+                color: isLoginButtonPressed
+                    ? textButtonColor
+                    : textButtonBackground,
+                borderRadius: BorderRadius.circular(35),
+              ),
               child: TextButton(
                 onHover: ((value) {
                   setState(
@@ -147,9 +147,24 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: textButtonBackground,
-                    ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: textButtonBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blueGrey.shade900,
+                            blurRadius: 4,
+                            spreadRadius: 0,
+                            offset: Offset(2, 2),
+                            // inset: true,
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 4,
+                            spreadRadius: 2,
+                            offset: Offset(-2, -2),
+                            // inset: true,
+                          ),
+                        ]),
                     child: Column(
                       children: [
                         //////NAME TEXT FIELD//////
@@ -160,7 +175,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 0),
                             decoration: BoxDecoration(
-                                color: textButtonBackground,
+                                color: Colors.transparent,
                                 boxShadow: isNameTextFieldPressed
                                     ? [
                                         BoxShadow(
@@ -179,27 +194,33 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                                         ),
                                       ]
                                     : []),
-                            child: TextField(
-                              onTap: () {
-                                setState(() {
-                                  isNameTextFieldPressed = true;
-                                });
-                              },
-                              controller: nameTextController,
-                              style: GoogleFonts.robotoMono(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Name",
-                                suffixIcon: IconButton(
-                                  splashRadius: 20,
-                                  onPressed: () {
-                                    nameTextController.clear();
+                            child: FocusScope(
+                              child: Focus(
+                                onFocusChange: ((value) {
+                                  isNameTextFieldPressed = value;
+                                }),
+                                child: TextField(
+                                  onTap: () {
+                                    setState(() {});
                                   },
-                                  icon: Icon(Icons.clear_rounded),
+                                  controller: nameTextController,
+                                  style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Name",
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      onPressed: () {
+                                        nameTextController.clear();
+                                      },
+                                      icon: Icon(Icons.clear_rounded),
+                                    ),
+                                  ),
                                 ),
+                                // ),
                               ),
                             ),
                           ),
@@ -214,7 +235,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 0),
                             decoration: BoxDecoration(
-                                color: textButtonBackground,
+                                color: Colors.transparent,
                                 boxShadow: isEmailTextFieldPressed
                                     ? [
                                         BoxShadow(
@@ -233,26 +254,31 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                                         ),
                                       ]
                                     : []),
-                            child: TextField(
-                              onTap: () {
-                                setState(() {
-                                  isEmailTextFieldPressed = true;
-                                });
-                              },
-                              controller: emailTextController,
-                              style: GoogleFonts.robotoMono(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Email",
-                                suffixIcon: IconButton(
-                                  splashRadius: 20,
-                                  onPressed: () {
-                                    emailTextController.clear();
+                            child: FocusScope(
+                              child: Focus(
+                                onFocusChange: ((value) {
+                                  isEmailTextFieldPressed = value;
+                                }),
+                                child: TextField(
+                                  onTap: () {
+                                    setState(() {});
                                   },
-                                  icon: Icon(Icons.clear_rounded),
+                                  controller: emailTextController,
+                                  style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Email",
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      onPressed: () {
+                                        emailTextController.clear();
+                                      },
+                                      icon: Icon(Icons.clear_rounded),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -267,7 +293,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 0),
                             decoration: BoxDecoration(
-                                color: textButtonBackground,
+                                color: Colors.transparent,
                                 boxShadow: isPasswordTextFieldPressed
                                     ? [
                                         BoxShadow(
@@ -286,20 +312,25 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                                         ),
                                       ]
                                     : []),
-                            child: TextField(
-                              onTap: () {
-                                setState(() {
-                                  isPasswordTextFieldPressed = true;
-                                });
-                              },
-                              style: GoogleFonts.robotoMono(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
+                            child: FocusScope(
+                              child: Focus(
+                                onFocusChange: ((value) {
+                                  isPasswordTextFieldPressed = value;
+                                }),
+                                child: TextField(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  ),
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                  ),
+                                ),
                               ),
                             ),
                           ),

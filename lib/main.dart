@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       
       title: "Snack App",
-      // home: Welcome(),
-      home: CreateAccountPage(),
+      home: Welcome(),
+      // home: ForgotPasswordPage(),
       
     );
   }

@@ -1,9 +1,5 @@
-// import 'dart:html';
-
-import 'package:flutter/material.dart';
-// import 'package:snackapp/home.dart';
-// import 'package:snackapp/loginImageButton.dart';
-// import 'package:snackapp/register.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:snackapp/ForgotPassword.dart';
 import 'package:snackapp/home.dart';
@@ -16,36 +12,50 @@ class LoginAccountPage extends StatefulWidget {
 }
 
 class LoginAccountPageState extends State<LoginAccountPage> {
-  bool isEventButtonPressed = false;
-  Color textButtonBackground = Color.fromARGB(255, 15, 27, 39);
+  bool isCreateButtonPressed = false;
+  bool isNameTextFieldPressed = false;
+  bool isPasswordTextFieldPressed = false;
+
+  final Color textButtonBackground = Colors.grey.shade300;
+  final Color backgroundColor = Color.fromARGB(255, 227, 218, 205);
+  final Color textButtonColor = Color.fromARGB(255, 15, 27, 39);
+
+  final nameTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 100,
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 249, 242, 232),
-          leading: IconButton(
-              icon: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Color.fromARGB(255, 15, 27, 39),
-                  size: 30,
-                ),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        toolbarHeight: 100,
+        elevation: 0,
+        backgroundColor: backgroundColor,
+        leading: IconButton(
+          icon: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: textButtonColor,
+              size: 30,
+            ),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        backgroundColor: Color.fromARGB(255, 249, 242, 232),
-        body: Padding(
+      ),
+
+      //////////BODY///////////////
+      body: ListView(
+        children: [
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Expanded(
-                child: SafeArea(
+            child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //////HEADER//////
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 10,
@@ -69,73 +79,246 @@ class LoginAccountPageState extends State<LoginAccountPage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: TextField(
-                        style: GoogleFonts.robotoMono(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "Name",
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: TextField(
-                        style: GoogleFonts.robotoMono(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "Password",
-                        )),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgotPasswordPage()));
-                      },
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 15, 27, 39),
-                            decoration: TextDecoration.underline),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
+
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: textButtonBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blueGrey.shade900,
+                            blurRadius: 4,
+                            spreadRadius: 0,
+                            offset: Offset(2, 2),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 4,
+                            spreadRadius: 2,
+                            offset: Offset(-2, -2),
+                          ),
+                        ]),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 15),
+                        //////NAME TEXT FIELD//////
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 130),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 0),
                             decoration: BoxDecoration(
-                                color: textButtonBackground,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Home()));
-                                },
-                                child: Text("Create",
-                                    style: GoogleFonts.robotoMono(
-                                      color: Color.fromARGB(255, 249, 242, 232),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                    ))),
+                                color: Colors.transparent,
+                                boxShadow: isNameTextFieldPressed
+                                    ? [
+                                        BoxShadow(
+                                          color: Colors.blueGrey.shade900,
+                                          blurRadius: 4,
+                                          spreadRadius: 0,
+                                          offset: Offset(1, 1),
+                                          inset: true,
+                                        ),
+                                        BoxShadow(
+                                          color: Colors.white,
+                                          blurRadius: 4,
+                                          spreadRadius: 2,
+                                          offset: Offset(-1, -1),
+                                          inset: true,
+                                        ),
+                                      ]
+                                    : []),
+                            child: FocusScope(
+                              child: Focus(
+                                onFocusChange: ((value) {
+                                  isNameTextFieldPressed = value;
+                                }),
+                                child: TextField(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  controller: nameTextController,
+                                  style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Name",
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      onPressed: () {
+                                        nameTextController.clear();
+                                      },
+                                      icon: Icon(Icons.clear_rounded),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        //////PASSWORD TEXT FIELD//////
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 130),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 0),
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                boxShadow: isPasswordTextFieldPressed
+                                    ? [
+                                        BoxShadow(
+                                          color: Colors.blueGrey.shade900,
+                                          blurRadius: 4,
+                                          spreadRadius: 0,
+                                          offset: Offset(1, 1),
+                                          inset: true,
+                                        ),
+                                        BoxShadow(
+                                          color: Colors.white,
+                                          blurRadius: 4,
+                                          spreadRadius: 2,
+                                          offset: Offset(-1, -1),
+                                          inset: true,
+                                        ),
+                                      ]
+                                    : []),
+                            child: FocusScope(
+                              child: Focus(
+                                onFocusChange: ((value) {
+                                  isPasswordTextFieldPressed = value;
+                                }),
+                                child: TextField(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  controller: passwordTextController,
+                                  style: GoogleFonts.robotoMono(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      onPressed: () {
+                                        passwordTextController.clear();
+                                      },
+                                      icon: Icon(Icons.clear_rounded),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
+
+                  //////FORGOT PASSWORD BUTTON//////
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Forgot Password",
+                        style: GoogleFonts.robotoMono(
+                          color: textButtonColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  ////CREATE BUTTON//////
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 150),
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            decoration: BoxDecoration(
+                              boxShadow: isCreateButtonPressed
+                                  ? []
+                                  : [
+                                      BoxShadow(
+                                        color: Colors.blueGrey.shade900,
+                                        blurRadius: 4,
+                                        spreadRadius: 0,
+                                        offset: Offset(1, 1),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white,
+                                        blurRadius: 4,
+                                        spreadRadius: 2,
+                                        offset: Offset(-1, -1),
+                                      ),
+                                    ],
+                              color: isCreateButtonPressed
+                                  ? textButtonColor
+                                  : textButtonBackground,
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: TextButton(
+                              onHover: ((value) {
+                                setState(
+                                  () {
+                                    isCreateButtonPressed = value;
+                                  },
+                                );
+                              }),
+                              style: ButtonStyle(
+                                splashFactory: NoSplash.splashFactory,
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.transparent),
+                                overlayColor: MaterialStateProperty.all<Color>(
+                                    Colors.transparent),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Create",
+                                style: GoogleFonts.robotoMono(
+                                  color: isCreateButtonPressed
+                                      ? textButtonBackground
+                                      : textButtonColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //////PRIVACY SECTION//////
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    alignment: AlignmentDirectional.center,
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                     child: Text(
                       "By creating an account, you agree to our Privacy Policy",
                       style: GoogleFonts.robotoMono(
@@ -148,6 +331,10 @@ class LoginAccountPageState extends State<LoginAccountPage> {
                   ),
                 ],
               ),
-            ))));
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

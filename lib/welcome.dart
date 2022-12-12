@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:snackapp/CreateAccount.dart';
-// import 'package:snackapp/home.dart';
-// import 'package:snackapp/loginImageButton.dart';
-// import 'package:snackapp/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:snackapp/LoginAccount.dart';
@@ -10,64 +7,36 @@ import 'package:snackapp/LoginAccount.dart';
 class WelcomeImageButton extends StatelessWidget {
   final IconData icon;
   final Color color;
-  WelcomeImageButton({required this.icon, required this.color});
+  const WelcomeImageButton({required this.icon, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+      padding: const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 20),
       child: Container(
         width: 160,
-        height: 160,
-        // padding: EdgeInsets.all(80),
+        decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              const BoxShadow(
+                color: Colors.black,
+                offset: Offset(5, 5),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+              BoxShadow(
+                color: Colors.blueGrey.shade600,
+                offset: const Offset(-5, -5),
+                blurRadius: 4,
+                spreadRadius: 1,
+              ),
+            ]),
         child: Icon(
           icon,
           size: 60,
           color: color,
         ),
-        decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black54,
-                offset: Offset(6, 6),
-                blurRadius: 5,
-                spreadRadius: 2,
-              ),
-              BoxShadow(
-                color: Colors.blueGrey.shade600,
-                offset: Offset(-6, -6),
-                blurRadius: 5,
-                spreadRadius: 2,
-              ),
-            ]),
-      ),
-    );
-  }
-}
-
-class WelcomePageText extends StatelessWidget {
-  final String text;
-  final Color color;
-  final double fontsize;
-  final FontWeight fontweight;
-
-  WelcomePageText(
-      {required this.text,
-      required this.color,
-      required this.fontsize,
-      required this.fontweight});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: GoogleFonts.robotoMono(
-        color: color,
-        fontWeight: fontweight,
-        fontSize: fontsize,
       ),
     );
   }
@@ -81,39 +50,39 @@ class Welcome extends StatefulWidget {
 }
 
 class WelcomeState extends State<Welcome> {
-  // final bool _isObscure = true;
+  // final Color textButtonBackground = Colors.grey.shade300;
+  final Color textColor = const Color.fromARGB(255, 227, 218, 205);
+  final Color backgroundColor = const Color.fromARGB(255, 15, 27, 39);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 15, 27, 39),
-      body: SafeArea(
-          child: Center(
-              child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ////////////Header/////////////
-          Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 50),
-              child: WelcomePageText(
-                text: "Snack Chat",
-                color: Colors.white,
-                fontsize: 28,
-                fontweight: FontWeight.w900,
-              )),
+      backgroundColor: backgroundColor,
+      body: ListView(children: [
+        SafeArea(
+          // child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ////////////Header/////////////
+              Padding(
+                padding: const EdgeInsets.only(top: 40, bottom: 50),
+                child: Text(
+                  "Snack Chat",
+                  style: GoogleFonts.robotoMono(
+                    color: textColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 28,
+                  ),
+                ),
+              ),
 
-          // LoginImageButton(),
-
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50, top: 50),
-            child: Container(
-              child: CarouselSlider(
+              CarouselSlider(
                 options: CarouselOptions(
-                  // enableInfiniteScroll: false,
-                  aspectRatio: 2,
+                  height: 200,
                   autoPlay: true,
                 ),
                 items: [
-                  WelcomeImageButton(
+                  const WelcomeImageButton(
                     icon: Icons.favorite,
                     color: Colors.red,
                   ),
@@ -121,7 +90,7 @@ class WelcomeState extends State<Welcome> {
                     icon: Icons.breakfast_dining,
                     color: Colors.lightGreen.shade900,
                   ),
-                  WelcomeImageButton(
+                  const WelcomeImageButton(
                     icon: Icons.local_pizza,
                     color: Colors.orange,
                   ),
@@ -129,117 +98,115 @@ class WelcomeState extends State<Welcome> {
                     icon: Icons.coffee,
                     color: Colors.brown.shade900,
                   ),
-                  WelcomeImageButton(
+                  const WelcomeImageButton(
                     icon: Icons.rice_bowl,
                     color: Colors.black87,
                   ),
                 ],
               ),
-            ),
-          ),
 
-          Column(
-            children: [
-              WelcomePageText(
-                text: "Chat about Snacks",
-                color: Colors.white,
-                fontsize: 18,
-                fontweight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: Column(
+                  children: [
+                    Text(
+                      "Chat about Snacks",
+                      style: GoogleFonts.robotoMono(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      "Add your friends and snack all day",
+                      style: GoogleFonts.robotoMono(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              WelcomePageText(
-                text: "Add your friends and snack all day",
-                color: Colors.white,
-                fontsize: 15,
-                fontweight: FontWeight.w400,
+
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        decoration: BoxDecoration(
+                          color: textColor,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CreateAccountPage()),
+                            );
+                          },
+                          child: Text(
+                            "Create an account",
+                            style: GoogleFonts.robotoMono(
+                              color: backgroundColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        decoration: BoxDecoration(
+                          color: backgroundColor,
+                          border: Border.all(width: 2, color: textColor),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LoginAccountPage()),
+                            );
+                          },
+                          child: Text(
+                            "Continue with email",
+                            style: GoogleFonts.robotoMono(
+                              color: textColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-
-          Padding(
-            padding: const EdgeInsets.only(top: 100, bottom: 20),
-            child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-                // width: 200,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 249, 242, 232),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginAccountPage()));
-                    },
-                  child: WelcomePageText(
-                  text: "Continue with Email",
-                  color: Colors.black87,
-                  fontweight: FontWeight.w800,
-                  fontsize: 18,
-                ))),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-              // width: 200,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 15, 27, 39),
-                border: Border.all(
-                  color: Colors.white,
-                  width: 1.5,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CreateAccountPage()));
-                  },
-                  child: WelcomePageText(
-                    text: "Create an account",
-                    color: Colors.white,
-                    fontweight: FontWeight.w800,
-                    fontsize: 18,
-                  )),
-              // child: WelcomePageText(
-              //   text: "Create an account",
-              //   color: Colors.white,
-              //   fontweight: FontWeight.w800,
-              //   fontsize: 18,
-              // )
-            ),
-          ),
-
-          /////////////Footer///////////////////
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     WelcomePageText(
-          //       text: "Already have an account?",
-          //       color: Colors.white,
-          //       fontweight: FontWeight.w200,
-          //       fontsize: 14,
-          //     ),
-          //     TextButton(
-          //       onPressed: () {
-          //         Navigator.push(context,
-          //             MaterialPageRoute(builder: (context) => LoginAccountPage()));
-          //       },
-          //       child: WelcomePageText(
-          //         text: "Login",
-          //         color: Colors.white,
-          //         fontweight: FontWeight.w600,
-          //         fontsize: 14,
-          //       ),
-          //     ),
-          //   ],
-          // )
-        ],
-      ))),
+        ),
+        // ),
+      ]),
     );
   }
 }
