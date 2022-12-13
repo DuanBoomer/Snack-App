@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snackapp/home.dart';
 import 'package:snackapp/welcome.dart';
 import 'package:snackapp/CreateAccount.dart';
 import 'package:snackapp/ForgotPassword.dart';
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       
       title: "Snack App",
-      home: Welcome(),
-      // home: ForgotPasswordPage(),
+      // home: Welcome(),
+      home: Home(),
       
     );
   }
