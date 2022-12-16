@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:snackapp/CreateAccount.dart';
+import 'package:snackapp/UserFunnelPages/CreateAccount.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:snackapp/LoginAccount.dart';
+import 'package:snackapp/UserFunnelPages/LoginAccount.dart';
 
 class WelcomeImageButton extends StatelessWidget {
   final IconData icon;

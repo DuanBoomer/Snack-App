@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:snackapp/HomePages/home.dart';
+import 'package:snackapp/HomePages/quotes.dart';
+import 'package:snackapp/HomePages/storm.dart';
+import 'package:snackapp/HomePages/user.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,17 +15,28 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   final double navBarRadius = 50;
   final Color navBarColor = Colors.black;
+  int _selectedIndex = 0;
+  final List<Widget> pagesForBody = [
+    HomePage(),
+    QuotesPage(),
+    StormPage(),
+    UserPage(),
+  ];
+
+  void _navbarController(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      // backgroundColor: Colors.black87,
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: Center(
-        child: Text("Home Page"),
-      ),
+      body: pagesForBody[_selectedIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
@@ -33,10 +48,11 @@ class HomeState extends State<Home> {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: GNav(
+              selectedIndex: _selectedIndex,
+              onTabChange: _navbarController,
               backgroundColor: navBarColor,
               textStyle: TextStyle(color: Colors.white),
               color: Colors.white,
-              // gap: 10,
               activeColor: Colors.white,
               tabBackgroundGradient: LinearGradient(colors: [
                 Colors.grey.shade600,
@@ -45,22 +61,16 @@ class HomeState extends State<Home> {
               ]),
               tabs: [
                 GButton(
-                  icon: Icons.home,
-                  onPressed: () {},
-                  // text: "Home",
+                  icon: Icons.wb_sunny_outlined,
                 ),
                 GButton(
-                  icon: Icons.favorite,
-                  // text: "Fav",
-                ),
-                GButton(icon: Icons.add),
-                GButton(
-                  icon: Icons.search,
-                  // text: "Search",
+                  icon: Icons.format_quote_rounded,
                 ),
                 GButton(
-                  icon: Icons.settings,
-                  // text: "Setting",
+                  icon: Icons.storm_rounded,
+                ),
+                GButton(
+                  icon: Icons.backup_table,
                 ),
               ],
             ),

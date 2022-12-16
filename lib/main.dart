@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:snackapp/home.dart';
-import 'package:snackapp/welcome.dart';
-import 'package:snackapp/CreateAccount.dart';
-import 'package:snackapp/ForgotPassword.dart';
-import 'package:snackapp/LoginAccount.dart';
-import 'package:snackapp/ResetPassword.dart';
+import 'package:snackapp/HomePages/HomeArea.dart';
+import 'package:snackapp/UserFunnelPages/welcome.dart';
+import 'package:snackapp/UserFunnelPages/CreateAccount.dart';
+import 'package:snackapp/UserFunnelPages/ForgotPassword.dart';
+import 'package:snackapp/UserFunnelPages/LoginAccount.dart';
+import 'package:snackapp/UserFunnelPages/ResetPassword.dart';
 
 void main() {
-  
   runApp(MyApp());
 }
 
@@ -16,11 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      
+      debugShowCheckedModeBanner: false,
+
       title: "Snack App",
-      // home: Welcome(),
-      home: Home(),
-      
+      home: Welcome(),
+      // home: LoginAccountPage(),
     );
   }
 }
