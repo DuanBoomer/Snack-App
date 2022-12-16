@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:snackapp/HomePages/home.dart';
 import 'package:snackapp/HomePages/quotes.dart';
 import 'package:snackapp/HomePages/storm.dart';
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
   final double navBarRadius = 50;
-  final Color navBarColor = Colors.black;
+  // final Color navBarColor = Colors.black87;
   int _selectedIndex = 0;
   final List<Widget> pagesForBody = [
     HomePage(),
@@ -32,16 +33,14 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black87,
-      appBar: AppBar(
-        title: Text("Home"),
-      ),
+      backgroundColor: Color.fromARGB(255, 17, 17, 17),
+      // backgroundColor: Colors.white,
       body: pagesForBody[_selectedIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
           decoration: BoxDecoration(
-              color: navBarColor,
+              color: Color.fromARGB(255, 29, 29, 29),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(navBarRadius),
                   topRight: Radius.circular(navBarRadius))),
@@ -50,27 +49,36 @@ class HomeState extends State<Home> {
             child: GNav(
               selectedIndex: _selectedIndex,
               onTabChange: _navbarController,
-              backgroundColor: navBarColor,
-              textStyle: TextStyle(color: Colors.white),
+              backgroundColor: Colors.transparent,
+              textStyle: GoogleFonts.robotoMono(
+                color: Colors.white,
+                fontSize: 14,
+
+              ),
+              gap: 15,
               color: Colors.white,
               activeColor: Colors.white,
               tabBackgroundGradient: LinearGradient(colors: [
-                Colors.grey.shade600,
-                Colors.grey.shade800,
-                Colors.grey.shade900
+                Colors.black12,
+                Colors.black45,
+                Colors.black87
               ]),
               tabs: [
                 GButton(
                   icon: Icons.wb_sunny_outlined,
+                  text: "Home",
                 ),
                 GButton(
                   icon: Icons.format_quote_rounded,
+                  text: "Quotes",
                 ),
                 GButton(
                   icon: Icons.storm_rounded,
+                  text: "Insights",
                 ),
                 GButton(
                   icon: Icons.backup_table,
+                  text: "Menu",
                 ),
               ],
             ),

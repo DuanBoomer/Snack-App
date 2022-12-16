@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       title: "Snack App",
-      home: Welcome(),
-      // home: LoginAccountPage(),
+      // home: Welcome(),
+      home: Home(),
     );
   }
 }
